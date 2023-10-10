@@ -1,38 +1,76 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Row, Col } from "reactstrap";
 import Helmet from "../components/Helmet/Helmet";
 import CommonSection from "../components/UI/CommonSection";
 import CarItem from "../components/UI/CarItem";
-import carData from "../assets/data/carData";
+import CarModal from "../components/CarModal/CarModal";
+import { carData } from "../assets/data/carData";
 
 const CarListing = () => {
+  const [data, setData] = useState([]);
+
+  const [error, setError] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedCar, setSelectedCar] = useState(null);
+
+  const handleDetailsClick = (car) => {
+    setSelectedCar(car);
+    setIsModalOpen(true);
+  };
+
+  const listingsPerPage = 8;
+
+  const loadMore = () => {
+    setCurrentPage(currentPage + 1);
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const carDataResponse = await carData();
+        setData(carDataResponse);
+      } catch (err) {
+        console.error("Error fetching car data: ", err);
+        setError(err);
+      }
+    };
+    fetchData();
+  }, []);
+
   return (
     <Helmet title="Cars">
       <CommonSection title="Car Listing" />
-
       <section>
         <Container>
           <Row>
-            <Col lg="12">
-              <div className=" d-flex align-items-center gap-3 mb-5">
-                <span className=" d-flex align-items-center gap-2">
-                  <i class="ri-sort-asc"></i> Sort By
-                </span>
-
-                <select>
-                  <option>Select</option>
-                  <option value="low">Low to High</option>
-                  <option value="high">High to Low</option>
-                </select>
-              </div>
-            </Col>
-
-            {carData.map((item) => (
-              <CarItem item={item} key={item.id} />
-            ))}
+            {error ? (
+              <p>Error fetching car data</p>
+            ) : (
+              data
+                .slice(0, currentPage * listingsPerPage) // Apply pagination before mapping
+                .map((item, index) => (
+                  <Col key={item.id} lg="3" md="4" sm="6" xs="12">
+                    <CarItem
+                      item={item}
+                      handleDetailsClick={handleDetailsClick}
+                    />
+                  </Col>
+                ))
+            )}
           </Row>
         </Container>
       </section>
+      {currentPage * listingsPerPage < data.length && (
+        <div className="load-more-button-container">
+          <button className="load-more-button" onClick={loadMore}>
+            Load More
+          </button>
+        </div>
+      )}
+      {isModalOpen && selectedCar && (
+        <CarModal carData={selectedCar} onClose={() => setIsModalOpen(false)} />
+      )}
     </Helmet>
   );
 };

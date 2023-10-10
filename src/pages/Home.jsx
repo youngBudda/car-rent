@@ -1,41 +1,39 @@
-import React from "react";
-
 import HeroSlider from "../components/UI/HeroSlider";
 import Helmet from "../components/Helmet/Helmet";
 
 import { Container, Row, Col } from "reactstrap";
-import FindCarForm from "../components/UI/FindCarForm";
+// import FindCarForm from "../components/UI/FindCarForm";
 import AboutSection from "../components/UI/AboutSection";
 import ServicesList from "../components/UI/ServicesList";
 import carData from "../assets/data/carData";
 import CarItem from "../components/UI/CarItem";
 import BecomeDriverSection from "../components/UI/BecomeDriverSection";
-import Testimonial from "../components/UI/Testimonial";
-
+// import Testimonial from "../components/UI/Testimonial";
 import BlogList from "../components/UI/BlogList";
+// import { useEffect, useState } from "react";
 
 const Home = () => {
+  // const [data, setData] = useState([]);
+  // const [error, setError] = useState(null);
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const carDataResponse = await carData();
+  //       setData(carDataResponse);
+  //     } catch (err) {
+  //       console.error("Error fetching car data: ", err);
+  //       setError(err);
+  //     }
+  //   };
+  //   fetchData();
+  // }, []);
+
   return (
     <Helmet title="Home">
       {/* ============= hero section =========== */}
       <section className="p-0 hero__slider-section">
         <HeroSlider />
-
-        <div className="hero__form">
-          <Container>
-            <Row className="form__row">
-              <Col lg="4" md="4">
-                <div className="find__cars-left">
-                  <h2>Find your best car here</h2>
-                </div>
-              </Col>
-
-              <Col lg="8" md="8" sm="12">
-                <FindCarForm />
-              </Col>
-            </Row>
-          </Container>
-        </div>
       </section>
       {/* =========== about section ================ */}
       <AboutSection />
@@ -53,7 +51,7 @@ const Home = () => {
         </Container>
       </section>
       {/* =========== car offer section ============= */}
-      <section>
+      {/* <section>
         <Container>
           <Row>
             <Col lg="12" className="text-center mb-5">
@@ -61,17 +59,19 @@ const Home = () => {
               <h2 className="section__title">Hot Offers</h2>
             </Col>
 
-            {carData.slice(0, 6).map((item) => (
-              <CarItem item={item} key={item.id} />
-            ))}
+            {error ? (
+              <p>Error fetching car data</p>
+            ) : (
+              data.map((item) => <CarItem item={item} key={item.id} />)
+            )}
           </Row>
         </Container>
-      </section>
+      </section> */}
       {/* =========== become a driver section ============ */}
       <BecomeDriverSection />
 
       {/* =========== testimonial section =========== */}
-      <section>
+      {/* <section>
         <Container>
           <Row>
             <Col lg="12" className="mb-4 text-center">
@@ -82,7 +82,7 @@ const Home = () => {
             <Testimonial />
           </Row>
         </Container>
-      </section>
+      </section> */}
 
       {/* =============== blog section =========== */}
       <section>

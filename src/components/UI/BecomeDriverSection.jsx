@@ -10,7 +10,7 @@ const BecomeDriverSection = () => {
       <Container>
         <Row>
           <Col lg="6" md="6" sm="12" className="become__driver-img">
-            <img src={driverImg} alt="" className="w-100" />
+            <img src={driverImg} alt="car" className="w-100" />
           </Col>
 
           <Col lg="6" md="6" sm="12">

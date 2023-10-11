@@ -16,7 +16,7 @@ const API = axios.create({
 
 export const carData = async () => {
   const { data } = await API.get("/adverts");
-  console.log(data);
+
   return data;
 };
 

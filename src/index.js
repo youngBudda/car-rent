@@ -12,7 +12,7 @@ import { FavoritesProvider } from "./hooks/FavoritesContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <Router basename="/car-rent/">
+  <Router basename="/">
     <FavoritesProvider>
       <App />
     </FavoritesProvider>

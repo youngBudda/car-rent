@@ -1,6 +1,6 @@
 {
-  "homepage": "https://youngbudda.github.io/car-rent",
-  "name": "car-rental",
+  "homepage": "https://youngBudda.github.io/car-rent",
+  "name": "car-rent",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

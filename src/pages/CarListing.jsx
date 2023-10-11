@@ -5,6 +5,7 @@ import CommonSection from "../components/UI/CommonSection";
 import CarItem from "../components/UI/CarItem";
 import CarModal from "../components/CarModal/CarModal";
 import { carData } from "../assets/data/carData";
+import "../styles/car-listing.css";
 
 const CarListing = () => {
   const [data, setData] = useState([]);
@@ -38,6 +39,20 @@ const CarListing = () => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    const handleKeyPress = (e) => {
+      if (e.key === "Escape" && isModalOpen) {
+        setIsModalOpen(false);
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyPress);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyPress);
+    };
+  }, [isModalOpen]);
+
   return (
     <Helmet title="Cars">
       <CommonSection title="Car Listing" />
@@ -54,6 +69,7 @@ const CarListing = () => {
                     <CarItem
                       item={item}
                       handleDetailsClick={handleDetailsClick}
+                      index={index}
                     />
                   </Col>
                 ))
@@ -62,14 +78,18 @@ const CarListing = () => {
         </Container>
       </section>
       {currentPage * listingsPerPage < data.length && (
-        <div className="load-more-button-container">
-          <button className="load-more-button" onClick={loadMore}>
+        <div className="load-more-button-container d-flex justify-content-center">
+          <button className=" load-more-button" onClick={loadMore}>
             Load More
           </button>
         </div>
       )}
       {isModalOpen && selectedCar && (
-        <CarModal carData={selectedCar} onClose={() => setIsModalOpen(false)} />
+        <CarModal
+          carData={selectedCar}
+          apiData={selectedCar}
+          onClose={() => setIsModalOpen(false)}
+        />
       )}
     </Helmet>
   );

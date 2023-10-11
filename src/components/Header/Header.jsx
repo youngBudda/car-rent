@@ -47,7 +47,7 @@ const Header = () => {
               <div className="header__top__left">
                 <span>Need Help?</span>
                 <span className="header__top__help">
-                  <i className="ri-phone-fill"></i> +1-202-555-0149
+                  <i className="ri-phone-fill"></i> +38-073-0000000
                 </span>
               </div>
             </Col>
@@ -90,8 +90,8 @@ const Header = () => {
                   <i className="ri-earth-line"></i>
                 </span>
                 <div className="header__location-content">
-                  <h4>Bangladesh</h4>
-                  <h6>Sylhet City, Bangladesh</h6>
+                  <h4>Ukraine</h4>
+                  <h6>Kyiv, Ukraine</h6>
                 </div>
               </div>
             </Col>

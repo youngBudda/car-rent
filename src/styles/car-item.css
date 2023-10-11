@@ -1,8 +1,8 @@
-.car__item {
+/* .car__item {
   border: 1px solid #7c8a9736;
   padding: 20px;
   border-radius: 5px;
-}
+} */
 
 .car__item-info span i {
   color: #f9a826;
@@ -15,6 +15,12 @@
   outline: none;
   background: #000d6b;
   padding: 8px 0px;
+  color: #fff;
+  font-family: Manrope;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px;
 }
 
 .car__item-btn a {
@@ -42,6 +48,54 @@
 .car__item-content h6 {
   font-size: 1.2rem;
   font-weight: 600;
+}
+.car__img {
+  position: relative; /* Родительский контейнер имеет относительное позиционирование */
+}
+
+.like-btn {
+  position: absolute;
+  top: 10px; /* Расположение от верхнего края изображения */
+  right: 10px; /* Расположение от правого края изображения */
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1; /* Чтобы кнопка была над изображением */
+  transition: opacity 0.3s ease;
+}
+
+.like-btn:hover {
+  opacity: 1; /* При наведении курсора кнопка становится видимой */
+}
+
+.img-container {
+  max-width: 100%;
+  height: 185px; /* Установите желаемую высоту*/
+  border-radius: 15px;
+  overflow: hidden;
+  object-fit: cover;
+}
+
+.car__item-name {
+  font-family: "Manrope", sans-serif;
+  color: #121417;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px; /* 150% */
+}
+
+.white-heart {
+  color: white;
+}
+
+.purple-heart {
+  color: #3470ff;
+}
+
+.car__btn-details:hover {
+  background-color: #0b44cd;
 }
 
 @media only screen and (max-width: 992px) {

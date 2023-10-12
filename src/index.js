@@ -12,7 +12,7 @@ import { FavoritesProvider } from "./hooks/FavoritesContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <Router basename="/">
+  <Router basename="/home">
     <FavoritesProvider>
       <App />
     </FavoritesProvider>

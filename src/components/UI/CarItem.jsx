@@ -67,18 +67,19 @@ const CarItem = (props) => {
           </div>
 
           <div className="car__item-info d-flex  mt-3 mb-4">
-            <span className="d-flex align-items-center gap-1">
+            <span className="d-flex align-items-center gap-1 custom-height">
               {city} | {country} | {rentalCompany} | {type} | {model} | {id} |{" "}
               {accessories[0]}
             </span>
           </div>
-
-          <button
-            className="w-100 car__item-btn car__btn-details"
-            onClick={() => props.handleDetailsClick(props.item)}
-          >
-            Learn More
-          </button>
+          <div className="button-container">
+            <button
+              className="w-100 car__item-btn car__btn-details"
+              onClick={() => props.handleDetailsClick(props.item)}
+            >
+              Learn More
+            </button>
+          </div>
         </div>
       </div>
     </Col>

@@ -145,3 +145,6 @@
     font-size: 0.8rem;
   }
 }
+.custom-height {
+  height: 48px;
+}

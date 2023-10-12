@@ -99,6 +99,11 @@
   color: #fff;
 }
 
+.header__top__tel {
+  text-decoration: none;
+  color: white;
+}
+
 /* ================ main navbar styles =========== */
 
 .main__navbar {

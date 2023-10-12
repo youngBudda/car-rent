@@ -69,6 +69,11 @@
 .footer__bottom {
   border-top: 1px solid #7c8a972f;
 }
+.office__info-a {
+  text-decoration: none;
+
+  color: rgba(255, 255, 255, 0.715);
+}
 
 @media only screen and (max-width: 768px) {
   .footer__logo-content {
@@ -89,6 +94,4 @@
   .footer__bottom p {
     font-size: 0.7rem;
   }
-
-  
 }

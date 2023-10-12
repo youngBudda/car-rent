@@ -30,6 +30,10 @@ const CarModal = ({ apiData, onClose }) => {
     };
   }, [apiData]);
 
+  const initiatePhoneCall = () => {
+    window.location.href = "tel:+380730000000";
+  };
+
   return (
     <div className="car-modal">
       <div className="car-modal-content">
@@ -120,7 +124,9 @@ const CarModal = ({ apiData, onClose }) => {
                     </div>
                   </div>
                 </div>
-                <button className="rental-btn">Rental car</button>
+                <button onClick={initiatePhoneCall} className="rental-btn">
+                  Rental car
+                </button>
               </div>
             </div>
           </>

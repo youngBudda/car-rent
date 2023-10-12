@@ -6,10 +6,11 @@ import CarItem from "../components/UI/CarItem";
 import CarModal from "../components/CarModal/CarModal";
 import { carData } from "../assets/data/carData";
 import "../styles/car-listing.css";
+import { RingLoader } from "react-spinners";
 
 const CarListing = () => {
   const [data, setData] = useState([]);
-
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -31,9 +32,11 @@ const CarListing = () => {
       try {
         const carDataResponse = await carData();
         setData(carDataResponse);
+        setLoading(false);
       } catch (err) {
         console.error("Error fetching car data: ", err);
         setError(err);
+        setLoading(false);
       }
     };
     fetchData();
@@ -59,11 +62,20 @@ const CarListing = () => {
       <section>
         <Container>
           <Row>
-            {error ? (
+            {loading ? ( // Conditional rendering of the loader
+              <div className="d-flex justify-content-center">
+                <RingLoader
+                  color="rgba(0, 13, 107, 1)"
+                  loading
+                  size={400}
+                  speedMultiplier={2}
+                />
+              </div>
+            ) : error ? (
               <p>Error fetching car data</p>
             ) : (
               data
-                .slice(0, currentPage * listingsPerPage) // Apply pagination before mapping
+                .slice(0, currentPage * listingsPerPage)
                 .map((item, index) => (
                   <Col key={item.id} lg="3" md="4" sm="6" xs="12">
                     <CarItem
@@ -79,7 +91,7 @@ const CarListing = () => {
       </section>
       {currentPage * listingsPerPage < data.length && (
         <div className="load-more-button-container d-flex justify-content-center">
-          <button className=" load-more-button" onClick={loadMore}>
+          <button className="load-more-button" onClick={loadMore}>
             Load More
           </button>
         </div>
